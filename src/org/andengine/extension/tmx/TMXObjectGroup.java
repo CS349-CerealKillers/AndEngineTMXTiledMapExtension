@@ -34,8 +34,10 @@ public class TMXObjectGroup implements TMXConstants {
 
 	public TMXObjectGroup(final Attributes pAttributes) {
 		this.mName = pAttributes.getValue("", TMXConstants.TAG_OBJECTGROUP_ATTRIBUTE_NAME);
-		this.mWidth = SAXUtils.getIntAttributeOrThrow(pAttributes, TMXConstants.TAG_OBJECTGROUP_ATTRIBUTE_WIDTH);
-		this.mHeight = SAXUtils.getIntAttributeOrThrow(pAttributes, TMXConstants.TAG_OBJECTGROUP_ATTRIBUTE_HEIGHT);
+//		this.mWidth = SAXUtils.getIntAttributeOrThrow(pAttributes, TMXConstants.TAG_OBJECTGROUP_ATTRIBUTE_WIDTH);
+//		this.mHeight = SAXUtils.getIntAttributeOrThrow(pAttributes, TMXConstants.TAG_OBJECTGROUP_ATTRIBUTE_HEIGHT);
+        this.mHeight = 0;
+        this.mWidth = 0;
 	}
 
 	// ===========================================================
