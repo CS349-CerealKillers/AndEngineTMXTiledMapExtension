@@ -4,6 +4,8 @@ import org.andengine.extension.tmx.util.constants.TMXConstants;
 import org.andengine.util.SAXUtils;
 import org.xml.sax.Attributes;
 
+import java.util.HashMap;
+
 /**
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
@@ -26,7 +28,7 @@ public class TMXObject implements TMXConstants {
 	private final int mY;
 	private final int mWidth;
 	private final int mHeight;
-	private final TMXProperties<TMXObjectProperty> mTMXObjectProperties = new TMXProperties<TMXObjectProperty>();
+    private HashMap<String, String> mTMXObjectProperties;
     private final int gid;
 
 	// ===========================================================
@@ -76,12 +78,19 @@ public class TMXObject implements TMXConstants {
     }
 
 	public void addTMXObjectProperty(final TMXObjectProperty pTMXObjectProperty) {
-		this.mTMXObjectProperties.add(pTMXObjectProperty);
+        if(mTMXObjectProperties == null){
+            mTMXObjectProperties = new HashMap<String, String>(5);
+        }
+		this.mTMXObjectProperties.put(pTMXObjectProperty.getName(), pTMXObjectProperty.getValue());
 	}
 
-	public TMXProperties<TMXObjectProperty> getTMXObjectProperties() {
+	public HashMap<String, String> getTMXObjectProperties() {
 		return this.mTMXObjectProperties;
 	}
+
+    public String getTMXObjectProperty(String key){
+        return this.mTMXObjectProperties.get(key);
+    }
 
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
