@@ -95,6 +95,9 @@ public class TMXObject implements TMXConstants {
 	}
 
     public String getTMXObjectProperty(String key){
+		if(mTMXObjectProperties == null){
+			return null;
+		}
         return this.mTMXObjectProperties.get(key);
     }
 
