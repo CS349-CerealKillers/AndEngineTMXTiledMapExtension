@@ -45,6 +45,7 @@ public class TMXObject implements TMXConstants {
 		this.mHeight = SAXUtils.getIntAttribute(pAttributes, TMXConstants.TAG_OBJECT_ATTRIBUTE_HEIGHT, 0);
         this.gid = SAXUtils.getIntAttribute(pAttributes, TMXConstants.TAG_OBJECT_ATTRIBUTE_GID, 0);
 		this.id = SAXUtils.getIntAttribute(pAttributes, TMXConstants.TAG_OBJECT_ATTRIBUTE_ID, 0);
+		mTMXObjectProperties = new HashMap<String, String>(5);
 	}
 
 	// ===========================================================
@@ -84,22 +85,25 @@ public class TMXObject implements TMXConstants {
 	}
 
 	public void addTMXObjectProperty(final TMXObjectProperty pTMXObjectProperty) {
-        if(mTMXObjectProperties == null){
-            mTMXObjectProperties = new HashMap<String, String>(5);
-        }
+        initProperties();
 		this.mTMXObjectProperties.put(pTMXObjectProperty.getName(), pTMXObjectProperty.getValue());
 	}
 
 	public HashMap<String, String> getTMXObjectProperties() {
+		initProperties();
 		return this.mTMXObjectProperties;
 	}
 
     public String getTMXObjectProperty(String key){
-		if(mTMXObjectProperties == null){
-			return null;
-		}
+		initProperties();
         return this.mTMXObjectProperties.get(key);
     }
+
+	private void initProperties(){
+		if (mTMXObjectProperties == null){
+			mTMXObjectProperties = new HashMap<String, String>(5);
+		}
+	}
 
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
